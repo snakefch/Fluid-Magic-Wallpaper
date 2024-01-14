@@ -201,6 +201,8 @@
     <string name="text_share_image">Share image</string>
     <string name="create_effect_success">Create Effect Success</string>
     <string name="error_file_exists">File with this name is already exists!</string>
+    <string name="themes">Themes</string>
+    <string name="customs_themes">Customs Themes</string>
 
 
 </resources>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "842680919114",
+    "project_id": "fluid-magic-wallpaper",
+    "storage_bucket": "fluid-magic-wallpaper.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:842680919114:android:30e256b732a20ea5f832b3",
+        "android_client_info": {
+          "package_name": "com.fozechmoblive.fluidwallpaper.livefluid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLzaaTk9EPwRvlrEDwnieT8Yei6xA9Ykc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

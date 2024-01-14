@@ -12,12 +12,12 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.live.fluidwallpaper.magicapp"
+        applicationId "com.fozechmoblive.fluidwallpaper.livefluid"
         minSdkVersion 21
         targetSdkVersion 33
 
-        versionCode 105
-        versionName "1.0.5"
+        versionCode 100
+        versionName "1.0.0"
         ndk.abiFilters 'armeabi-v7a', 'arm64-v8a'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -55,13 +55,14 @@ android {
             buildConfigField "String", "admob_native_on_boarding", "\"ca-app-pub-3940256099942544/2247696110\""
             buildConfigField "String", "admob_inter_wallpaper", "\"ca-app-pub-3940256099942544/1033173712\""
             buildConfigField "String", "admob_inter_set_wallpaper", "\"ca-app-pub-3940256099942544/1033173712\""
-            buildConfigField "String", "admob_banner_home", "\"ca-app-pub-3940256099942544/6300978111\""
+            buildConfigField "String", "admob_native_home", "\"ca-app-pub-3940256099942544/2247696110\""
+            buildConfigField "String", "admob_inter_home", "\"ca-app-pub-3940256099942544/1033173712\""
             buildConfigField "String", "admob_banner_all", "\"ca-app-pub-3940256099942544/6300978111\""
             buildConfigField "String", "admob_open_resume", "\"ca-app-pub-3940256099942544/3419835294\""
             buildConfigField "String", "admob_native_language_2", "\"ca-app-pub-3940256099942544/2247696110\""
             buildConfigField "String", "admob_native_on_boarding_2", "\"ca-app-pub-3940256099942544/2247696110\""
             buildConfigField "String", "admob_native_theme", "\"ca-app-pub-3940256099942544/2247696110\""
-            buildConfigField "String", "admob_native_home", "\"ca-app-pub-3940256099942544/2247696110\""
+            buildConfigField "String", "admob_native_wallpaper", "\"ca-app-pub-3940256099942544/2247696110\""
             buildConfigField "String", "admob_native_loading", "\"ca-app-pub-3940256099942544/2247696110\""
             buildConfigField "String", "admob_inter_design", "\"ca-app-pub-3940256099942544/1033173712\""
 
@@ -76,21 +77,22 @@ android {
         }
 
         release {
-            manifestPlaceholders = [app_id: "ca-app-pub-3940256099942544~3347511713"]
-            buildConfigField "String", "admob_inter_splash", "\"ca-app-pub-3940256099942544/1033173712\""
-            buildConfigField "String", "admob_native_language", "\"ca-app-pub-3940256099942544/2247696110\""
-            buildConfigField "String", "admob_native_on_boarding", "\"ca-app-pub-3940256099942544/2247696110\""
-            buildConfigField "String", "admob_inter_wallpaper", "\"ca-app-pub-3940256099942544/1033173712\""
-            buildConfigField "String", "admob_inter_set_wallpaper", "\"ca-app-pub-3940256099942544/1033173712\""
-            buildConfigField "String", "admob_banner_home", "\"ca-app-pub-3940256099942544/6300978111\""
-            buildConfigField "String", "admob_banner_all", "\"ca-app-pub-3940256099942544/6300978111\""
-            buildConfigField "String", "admob_open_resume", "\"ca-app-pub-3940256099942544/3419835294\""
-            buildConfigField "String", "admob_native_language_2", "\"ca-app-pub-3940256099942544/2247696110\""
-            buildConfigField "String", "admob_native_on_boarding_2", "\"ca-app-pub-3940256099942544/2247696110\""
-            buildConfigField "String", "admob_native_theme", "\"ca-app-pub-3940256099942544/2247696110\""
-            buildConfigField "String", "admob_native_home", "\"ca-app-pub-3940256099942544/2247696110\""
-            buildConfigField "String", "admob_native_loading", "\"ca-app-pub-3940256099942544/2247696110\""
-            buildConfigField "String", "admob_inter_design", "\"ca-app-pub-3940256099942544/1033173712\""
+            manifestPlaceholders = [app_id: "ca-app-pub-9604010857324217~3211518479"]
+            buildConfigField "String", "admob_inter_splash", "\"ca-app-pub-9604010857324217/6990410568\""
+            buildConfigField "String", "admob_native_language", "\"ca-app-pub-9604010857324217/1934876074\""
+            buildConfigField "String", "admob_native_on_boarding", "\"ca-app-pub-9604010857324217/7769710583\""
+            buildConfigField "String", "admob_inter_wallpaper", "\"ca-app-pub-9604010857324217/1167238242\""
+            buildConfigField "String", "admob_inter_set_wallpaper", "\"ca-app-pub-9604010857324217/6456628919\""
+            buildConfigField "String", "admob_native_home", "\"ca-app-pub-9604010857324217/3162846199\""
+            buildConfigField "String", "admob_inter_home", "\"ca-app-pub-9604010857324217/1851115594\""
+            buildConfigField "String", "admob_banner_all", "\"ca-app-pub-9604010857324217/9538033920\""
+            buildConfigField "String", "admob_open_resume", "\"ca-app-pub-9604010857324217/2792716075\""
+            buildConfigField "String", "admob_native_language_2", "\"ca-app-pub-9604010857324217/5682549393\""
+            buildConfigField "String", "admob_native_on_boarding_2", "\"ca-app-pub-9604010857324217/1479634408\""
+            buildConfigField "String", "admob_native_theme", "\"ca-app-pub-9604010857324217/1906955918\""
+            buildConfigField "String", "admob_native_wallpaper", "\"ca-app-pub-9604010857324217/7083314871\""
+            buildConfigField "String", "admob_native_loading", "\"ca-app-pub-9604010857324217/8280792578\""
+            buildConfigField "String", "admob_inter_design", "\"ca-app-pub-9604010857324217/8854156578\""
 
             buildConfigField "Boolean", "build_debug", "false"
             buildConfigField(BOOLEAN, DEV_MODE, FALSE)
@@ -115,7 +117,7 @@ android {
     buildFeatures {
         dataBinding true
     }
-    namespace 'com.live.fluidwallpaper.magicapp'
+    namespace 'com.fozechmoblive.fluidwallpaper.livefluid'
 }
 
 dependencies {

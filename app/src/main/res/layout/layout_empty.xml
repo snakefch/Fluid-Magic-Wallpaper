@@ -25,7 +25,7 @@
             android:fontFamily="@font/be_vietnam_pro_regular"
             android:gravity="center"
             android:text="@string/txt_title_empty"
-            android:textColor="@color/white"
+            android:textColor="@color/colorTitle"
             android:textSize="16sp" />
 
         <TextView
@@ -37,7 +37,7 @@
             android:fontFamily="@font/be_vietnam_pro_regular"
             android:gravity="center"
             android:text="@string/txt_content_empty"
-            android:textColor="@color/color_CCCDD0"
+            android:textColor="@color/color_596572"
             android:textSize="14sp" />
 
         <ImageView

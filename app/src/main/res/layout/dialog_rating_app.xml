@@ -75,30 +75,6 @@
                     app:srb_scrollable="true"
                     app:srb_stepSize="1" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginHorizontal="@dimen/_20sdp"
-                    app:layout_constraintTop_toBottomOf="@id/simpleRatingBar">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:gravity="center"
-                        android:text="@string/our_best_we_can_get"
-                        android:textColor="#FFCC00"
-                        android:textSize="@dimen/_14sdp" />
-
-                    <ImageView
-                        android:id="@+id/imv_start_here"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        app:srcCompat="@drawable/star_here" />
-                </RelativeLayout>
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -3,7 +3,7 @@
     android:color="?colorControlHighlight">
     <item>
         <shape>
-            <solid android:color="@color/color_1AFFFFFF" />
+            <solid android:color="@color/white" />
             <corners android:radius="@dimen/_10sdp" />
         </shape>
     </item>

@@ -26,7 +26,8 @@
                 android:paddingEnd="@dimen/_2sdp"
                 android:paddingBottom="0dip">
 
-                <TextView style="@style/AppTheme.Ads" />
+                <TextView style="@style/AppTheme.Ads"
+                    android:backgroundTint="@color/color_38BB6D"/>
 
                 <ImageView
                     android:id="@+id/ad_app_icon"
@@ -51,7 +52,7 @@
                         android:ellipsize="end"
                         android:maxLines="2"
                         android:text=""
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_10sdp" />
 
 
@@ -63,7 +64,7 @@
                         android:ellipsize="end"
                         android:gravity="bottom"
                         android:maxLines="2"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="12sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -84,7 +85,7 @@
                     android:layout_marginStart="@dimen/_2sdp"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="12sp" />
 
             </LinearLayout>

@@ -7,7 +7,7 @@
         android:id="@+id/ad_unit_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/adx_bg_native_language"
+        android:background="@drawable/adx_bg_native_list"
         android:orientation="vertical">
 
         <LinearLayout
@@ -49,7 +49,7 @@
                         android:layout_marginTop="@dimen/_4sdp"
                         android:maxLines="2"
                         android:text="@string/offline_notification_text"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/black"
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
@@ -69,7 +69,7 @@
                             android:layout_marginStart="@dimen/_5sdp"
                             android:paddingVertical="@dimen/_2sdp"
                             android:maxLines="2"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:text="@string/appbar_scrolling_view_behavior"
                             android:textSize="11dp" />
 

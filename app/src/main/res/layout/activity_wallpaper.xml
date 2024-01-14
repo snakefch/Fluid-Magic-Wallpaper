@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
 
-        <com.live.fluidwallpaper.magicapp.ui.component.wallpaper.fluids.FluidsSurfaceView
+        <com.fozechmoblive.fluidwallpaper.livefluid.ui.component.wallpaper.fluids.FluidsSurfaceView
             android:id="@+id/surface_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

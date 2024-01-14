@@ -15,20 +15,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/ad_call_to_action"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_marginHorizontal="@dimen/_16sdp"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginBottom="@dimen/_2sdp"
-                android:background="@drawable/border_cta_native_on_boarding"
-                android:gravity="center"
-                android:text="Install"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_16sdp"
-                android:textStyle="bold" />
-
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -96,12 +82,26 @@
 
             </LinearLayout>
 
+            <Button
+                android:id="@+id/ad_call_to_action"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_2sdp"
+                android:background="@drawable/border_cta_native_on_boarding"
+                android:gravity="center"
+                android:text="Install"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold" />
+
 
         </LinearLayout>
 
         <TextView
             style="@style/AppTheme.Ads"
-            android:backgroundTint="#993D5AFE" />
+            android:backgroundTint="@color/color_38BB6D" />
 
     </RelativeLayout>
 

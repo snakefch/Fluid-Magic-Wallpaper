@@ -101,7 +101,7 @@
 
         <TextView
             style="@style/AppTheme.Ads"
-            android:backgroundTint="#993D5AFE" />
+            android:backgroundTint="@color/color_38BB6D" />
 
     </RelativeLayout>
 
