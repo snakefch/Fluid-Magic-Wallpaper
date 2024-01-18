@@ -32,8 +32,10 @@ class LanguageAdapter(
 
                 if (item.isCheck){
                     binding.container.setBackgroundResource(R.drawable.border_item_language_select)
+                    binding.tvTitleLanguage.setTextColor(activity.resources.getColor(R.color.white))
                 }else{
                     binding.container.setBackgroundResource(R.drawable.border_item_language_un_select)
+                    binding.tvTitleLanguage.setTextColor(activity.resources.getColor(R.color.black))
                 }
             }
         }
