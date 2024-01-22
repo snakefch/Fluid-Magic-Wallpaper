@@ -80,7 +80,6 @@ class ThemesActivity : BaseActivity<ActivityThemesBinding>() {
         AdsManager.loadInterWallpaper(this)
         AdsManager.loadNativeTheme(this)
         AdsManager.loadNativeLoading(this)
-        AdsManager.loadInterDesign(this)
     }
 
     override fun onClickViews() {
@@ -171,17 +170,23 @@ class ThemesActivity : BaseActivity<ActivityThemesBinding>() {
                         override fun onAdFailedToLoad(adError: ApAdError?) {
                             super.onAdFailedToLoad(adError)
                             moveToPresetActivity(presetModel)
+                            AdsManager.mInterstitialAdWallpaper = null
+                            AdsManager.loadInterWallpaper(this@ThemesActivity)
                         }
 
                         override fun onAdClosed() {
                             super.onAdClosed()
                             CheckTimeShowAdsInter.logShowed()
                             moveToPresetActivity(presetModel)
+                            AdsManager.mInterstitialAdWallpaper = null
+                            AdsManager.loadInterWallpaper(this@ThemesActivity)
                         }
 
                         override fun onAdFailedToShow(adError: ApAdError?) {
                             super.onAdFailedToShow(adError)
                             moveToPresetActivity(presetModel)
+                            AdsManager.mInterstitialAdWallpaper = null
+                            AdsManager.loadInterWallpaper(this@ThemesActivity)
                         }
                     }, true
                 )

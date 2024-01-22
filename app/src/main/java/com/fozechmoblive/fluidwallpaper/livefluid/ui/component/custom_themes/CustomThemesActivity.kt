@@ -75,7 +75,41 @@ class CustomThemesActivity : BaseActivity<ActivityCustomThemesBinding>() {
             }
 
             ivAdd.click {
-                Routes.startCustomWallpaperActivity(this@CustomThemesActivity)
+                if (AdsManager.mInterstitialAdDesign!= null && AdsManager.mInterstitialAdDesign!!.isReady && CheckTimeShowAdsInter.isTimeShow) {
+
+                    ITGAd.getInstance().forceShowInterstitial(
+                        this@CustomThemesActivity,
+                        AdsManager.mInterstitialAdDesign,
+                        object : ITGAdCallback() {
+                            override fun onAdFailedToLoad(adError: ApAdError?) {
+                                super.onAdFailedToLoad(adError)
+                                Routes.startCustomWallpaperActivity(this@CustomThemesActivity)
+                                AdsManager.mInterstitialAdDesign = null
+                                AdsManager.loadInterDesign(this@CustomThemesActivity)
+                            }
+
+                            override fun onAdClosed() {
+                                super.onAdClosed()
+                                CheckTimeShowAdsInter.logShowed()
+                                Routes.startCustomWallpaperActivity(this@CustomThemesActivity)
+                                AdsManager.mInterstitialAdDesign = null
+                                AdsManager.loadInterDesign(this@CustomThemesActivity)
+                            }
+
+                            override fun onAdFailedToShow(adError: ApAdError?) {
+                                super.onAdFailedToShow(adError)
+                                Routes.startCustomWallpaperActivity(this@CustomThemesActivity)
+                                AdsManager.mInterstitialAdDesign = null
+                                AdsManager.loadInterDesign(this@CustomThemesActivity)
+                            }
+                        },
+                        true
+                    )
+
+                } else {
+                    Routes.startCustomWallpaperActivity(this@CustomThemesActivity)
+
+                }
             }
         }
     }
@@ -94,17 +128,23 @@ class CustomThemesActivity : BaseActivity<ActivityCustomThemesBinding>() {
                         override fun onAdFailedToLoad(adError: ApAdError?) {
                             super.onAdFailedToLoad(adError)
                             moveToPresetActivity(presetModel)
+                            AdsManager.mInterstitialAdWallpaper = null
+                            AdsManager.loadInterWallpaper(this@CustomThemesActivity)
                         }
 
                         override fun onAdClosed() {
                             super.onAdClosed()
                             CheckTimeShowAdsInter.logShowed()
                             moveToPresetActivity(presetModel)
+                            AdsManager.mInterstitialAdWallpaper = null
+                            AdsManager.loadInterWallpaper(this@CustomThemesActivity)
                         }
 
                         override fun onAdFailedToShow(adError: ApAdError?) {
                             super.onAdFailedToShow(adError)
                             moveToPresetActivity(presetModel)
+                            AdsManager.mInterstitialAdWallpaper = null
+                            AdsManager.loadInterWallpaper(this@CustomThemesActivity)
                         }
                     }, true
                 )

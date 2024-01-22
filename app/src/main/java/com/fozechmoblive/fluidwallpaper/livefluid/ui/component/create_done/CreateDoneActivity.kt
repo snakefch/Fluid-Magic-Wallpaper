@@ -56,6 +56,7 @@ class CreateDoneActivity : BaseActivity<ActivityCreateDoneBinding>() {
         }
 
         initAdsBanner()
+        AdsManager.loadInterSetWallpaper(this@CreateDoneActivity)
     }
 
     override fun onClickViews() {
@@ -91,6 +92,8 @@ class CreateDoneActivity : BaseActivity<ActivityCreateDoneBinding>() {
                         super.onAdFailedToLoad(adError)
                         applyCurrentSettingsToLwp()
                         setLiveWallpaper()
+                        AdsManager.mInterstitialAdSetWallpaper = null
+                        AdsManager.loadInterSetWallpaper(this@CreateDoneActivity)
                     }
 
                     override fun onAdClosed() {
@@ -98,12 +101,16 @@ class CreateDoneActivity : BaseActivity<ActivityCreateDoneBinding>() {
                         CheckTimeShowAdsInter.logShowed()
                         applyCurrentSettingsToLwp()
                         setLiveWallpaper()
+                        AdsManager.mInterstitialAdSetWallpaper = null
+                        AdsManager.loadInterSetWallpaper(this@CreateDoneActivity)
                     }
 
                     override fun onAdFailedToShow(adError: ApAdError?) {
                         super.onAdFailedToShow(adError)
                         applyCurrentSettingsToLwp()
                         setLiveWallpaper()
+                        AdsManager.mInterstitialAdSetWallpaper = null
+                        AdsManager.loadInterSetWallpaper(this@CreateDoneActivity)
                     }
                 },
                 true

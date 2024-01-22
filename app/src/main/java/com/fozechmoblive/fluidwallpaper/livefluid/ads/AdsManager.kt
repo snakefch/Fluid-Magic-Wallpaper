@@ -209,7 +209,7 @@ object AdsManager {
 
     fun loadInterWallpaper(activity: Activity) {
         if (getOnInterWallPaper() && isNetwork(activity)) {
-            if (mInterstitialAdDesign == null) {
+            if (mInterstitialAdWallpaper == null) {
                 ITGAd.getInstance().getInterstitialAds(activity,
                     BuildConfig.admob_inter_wallpaper,
                     object : ITGAdCallback() {

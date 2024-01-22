@@ -51,19 +51,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), PreLoadNativeListener 
                             override fun onAdFailedToLoad(adError: ApAdError?) {
                                 super.onAdFailedToLoad(adError)
                                 Routes.startThemesActivity(this@MainActivity)
-
+                                AdsManager.mInterstitialAdHome = null
+                                AdsManager.loadInterHome(this@MainActivity)
                             }
 
                             override fun onAdClosed() {
                                 super.onAdClosed()
                                 CheckTimeShowAdsInter.logShowed()
                                 Routes.startThemesActivity(this@MainActivity)
+                                AdsManager.mInterstitialAdHome = null
+                                AdsManager.loadInterHome(this@MainActivity)
 
                             }
 
                             override fun onAdFailedToShow(adError: ApAdError?) {
                                 super.onAdFailedToShow(adError)
                                 Routes.startThemesActivity(this@MainActivity)
+                                AdsManager.mInterstitialAdHome = null
+                                AdsManager.loadInterHome(this@MainActivity)
 
                             }
                         },
@@ -86,20 +91,23 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), PreLoadNativeListener 
                             override fun onAdFailedToLoad(adError: ApAdError?) {
                                 super.onAdFailedToLoad(adError)
                                 Routes.startCustomThemesActivity(this@MainActivity)
-
+                                AdsManager.mInterstitialAdHome = null
+                                AdsManager.loadInterHome(this@MainActivity)
                             }
 
                             override fun onAdClosed() {
                                 super.onAdClosed()
                                 CheckTimeShowAdsInter.logShowed()
                                 Routes.startCustomThemesActivity(this@MainActivity)
-
+                                AdsManager.mInterstitialAdHome = null
+                                AdsManager.loadInterHome(this@MainActivity)
                             }
 
                             override fun onAdFailedToShow(adError: ApAdError?) {
                                 super.onAdFailedToShow(adError)
                                 Routes.startCustomThemesActivity(this@MainActivity)
-
+                                AdsManager.mInterstitialAdHome = null
+                                AdsManager.loadInterHome(this@MainActivity)
                             }
                         },
                         true

@@ -23,6 +23,8 @@ import com.ads.control.ads.ITGAdCallback
 import com.ads.control.ads.wrapper.ApAdError
 import com.fozechmoblive.fluidwallpaper.livefluid.BuildConfig
 import com.fozechmoblive.fluidwallpaper.livefluid.R
+import com.fozechmoblive.fluidwallpaper.livefluid.ads.AdsManager
+import com.fozechmoblive.fluidwallpaper.livefluid.ads.CheckTimeShowAdsInter
 import com.fozechmoblive.fluidwallpaper.livefluid.ads.RemoteConfigUtils
 import com.fozechmoblive.fluidwallpaper.livefluid.app.AppConstants
 import com.fozechmoblive.fluidwallpaper.livefluid.app.AppConstants.KEY_IS_CUSTOM
@@ -30,6 +32,7 @@ import com.fozechmoblive.fluidwallpaper.livefluid.app.AppConstants.KEY_NAME_EFFE
 import com.fozechmoblive.fluidwallpaper.livefluid.databinding.ActivityWallpaperBinding
 import com.fozechmoblive.fluidwallpaper.livefluid.models.PresetModel
 import com.fozechmoblive.fluidwallpaper.livefluid.models.Status
+import com.fozechmoblive.fluidwallpaper.livefluid.services.WallpaperService
 import com.fozechmoblive.fluidwallpaper.livefluid.ui.bases.BaseActivity
 import com.fozechmoblive.fluidwallpaper.livefluid.ui.bases.ext.click
 import com.fozechmoblive.fluidwallpaper.livefluid.ui.bases.ext.goneView
@@ -38,6 +41,10 @@ import com.fozechmoblive.fluidwallpaper.livefluid.ui.bases.ext.showToastByString
 import com.fozechmoblive.fluidwallpaper.livefluid.ui.bases.ext.visibleView
 import com.fozechmoblive.fluidwallpaper.livefluid.ui.component.dialog.DialogSetName
 import com.fozechmoblive.fluidwallpaper.livefluid.ui.component.wallpaper.fluids.GLES20Renderer
+import com.fozechmoblive.fluidwallpaper.livefluid.ui.component.wallpaper.fluids.OrientationSensor
+import com.fozechmoblive.fluidwallpaper.livefluid.ui.component.wallpaper.fluids.QualitySetting
+import com.fozechmoblive.fluidwallpaper.livefluid.ui.component.wallpaper.fluids.SettingsController
+import com.fozechmoblive.fluidwallpaper.livefluid.ui.component.wallpaper.fluids.SettingsStorage
 import com.fozechmoblive.fluidwallpaper.livefluid.utils.EasyPreferences.set
 import com.fozechmoblive.fluidwallpaper.livefluid.utils.Routes
 import com.fozechmoblive.fluidwallpaper.livefluid.utils.SharePrefUtils
@@ -57,12 +64,12 @@ import java.io.IOException
 class WallpaperActivity : BaseActivity<ActivityWallpaperBinding>() {
 
     private var presetModel: PresetModel? = null
-    private lateinit var orientationSensor: com.fozechmoblive.fluidwallpaper.livefluid.ui.component.wallpaper.fluids.OrientationSensor
+    private lateinit var orientationSensor: OrientationSensor
     private var mGLSurfaceView: GLSurfaceView? = null
     private var nativeInterface: NativeInterface? = null
     private var renderer: GLES20Renderer? = null
     private val intentFilter = IntentFilter(AppConstants.ACTION_DESTROY_WALLPAPER_SERVICE)
-    private var settingsController: com.fozechmoblive.fluidwallpaper.livefluid.ui.component.wallpaper.fluids.SettingsController? = null
+    private var settingsController: SettingsController? = null
     private var isCustom = false
     private var presetNameCustom: String = ""
     private var dialogSetName: DialogSetName? = null
@@ -148,7 +155,7 @@ class WallpaperActivity : BaseActivity<ActivityWallpaperBinding>() {
                 job.join()
                 if (job.isCompleted) {
                     initAdsBanner()
-                    com.fozechmoblive.fluidwallpaper.livefluid.ads.AdsManager.loadInterSetWallpaper(this@WallpaperActivity)
+                    AdsManager.loadInterSetWallpaper(this@WallpaperActivity)
                 }
             }
 
@@ -179,13 +186,13 @@ class WallpaperActivity : BaseActivity<ActivityWallpaperBinding>() {
     private fun loadDataSettingController() {
 
         settingsController =
-            com.fozechmoblive.fluidwallpaper.livefluid.ui.component.wallpaper.fluids.SettingsController()
+            SettingsController()
         mBinding.surfaceView.preserveEGLContextOnPause = wantToPreserveEGLContext()
         mGLSurfaceView = mBinding.surfaceView
         nativeInterface = NativeInterface()
         nativeInterface?.setAssetManager(assets)
         orientationSensor =
-            com.fozechmoblive.fluidwallpaper.livefluid.ui.component.wallpaper.fluids.OrientationSensor(
+            OrientationSensor(
                 this@WallpaperActivity,
                 application
             )
@@ -203,7 +210,7 @@ class WallpaperActivity : BaseActivity<ActivityWallpaperBinding>() {
     }
 
     private fun showSettings() {
-        com.fozechmoblive.fluidwallpaper.livefluid.ui.component.wallpaper.fluids.QualitySetting.init()
+        QualitySetting.init()
         settingsController!!.initControls(this@WallpaperActivity, config)
         mBinding.settingsView.visibleView()
         mBinding.imageSetting.goneView()
@@ -367,29 +374,36 @@ class WallpaperActivity : BaseActivity<ActivityWallpaperBinding>() {
 
 
     private fun applyWallpaper() {
-        if (com.fozechmoblive.fluidwallpaper.livefluid.ads.AdsManager.mInterstitialAdSetWallpaper != null && com.fozechmoblive.fluidwallpaper.livefluid.ads.AdsManager.mInterstitialAdSetWallpaper!!.isReady && com.fozechmoblive.fluidwallpaper.livefluid.ads.CheckTimeShowAdsInter.isTimeShow) {
+        if (AdsManager.mInterstitialAdSetWallpaper != null && AdsManager.mInterstitialAdSetWallpaper!!.isReady && CheckTimeShowAdsInter.isTimeShow) {
 
             ITGAd.getInstance().forceShowInterstitial(
                 this@WallpaperActivity,
-                com.fozechmoblive.fluidwallpaper.livefluid.ads.AdsManager.mInterstitialAdSetWallpaper,
+                AdsManager.mInterstitialAdSetWallpaper,
                 object : ITGAdCallback() {
                     override fun onAdFailedToLoad(adError: ApAdError?) {
                         super.onAdFailedToLoad(adError)
                         applyCurrentSettingsToLwp()
                         setLiveWallpaper()
+                        AdsManager.mInterstitialAdSetWallpaper = null
+                        AdsManager.loadInterSetWallpaper(this@WallpaperActivity)
                     }
 
                     override fun onAdClosed() {
                         super.onAdClosed()
-                        com.fozechmoblive.fluidwallpaper.livefluid.ads.CheckTimeShowAdsInter.logShowed()
+                        CheckTimeShowAdsInter.logShowed()
                         applyCurrentSettingsToLwp()
                         setLiveWallpaper()
+                        AdsManager.mInterstitialAdSetWallpaper = null
+                        AdsManager.loadInterSetWallpaper(this@WallpaperActivity)
+                        
                     }
 
                     override fun onAdFailedToShow(adError: ApAdError?) {
                         super.onAdFailedToShow(adError)
                         applyCurrentSettingsToLwp()
                         setLiveWallpaper()
+                        AdsManager.mInterstitialAdSetWallpaper = null
+                        AdsManager.loadInterSetWallpaper(this@WallpaperActivity)
                     }
                 },
                 true
@@ -412,15 +426,15 @@ class WallpaperActivity : BaseActivity<ActivityWallpaperBinding>() {
         if (z) {
             Config.LWPCurrent.copyValuesFrom(config)
         } else {
-            com.fozechmoblive.fluidwallpaper.livefluid.ui.component.wallpaper.fluids.SettingsStorage.loadConfigFromInternalPreset(
+            SettingsStorage.loadConfigFromInternalPreset(
                 presetModel?.name,
                 assets,
                 config
             )
 
         }
-        com.fozechmoblive.fluidwallpaper.livefluid.ui.component.wallpaper.fluids.SettingsStorage.saveSessionConfig(
-            this, Config.LWPCurrent, com.fozechmoblive.fluidwallpaper.livefluid.ui.component.wallpaper.fluids.SettingsStorage.SETTINGS_LWP_NAME
+        SettingsStorage.saveSessionConfig(
+            this, Config.LWPCurrent, SettingsStorage.SETTINGS_LWP_NAME
         )
         Config.LWPCurrent.ReloadRequired = true
         Config.LWPCurrent.ReloadRequiredPreview = true
@@ -432,9 +446,9 @@ class WallpaperActivity : BaseActivity<ActivityWallpaperBinding>() {
             presetModel =
                 intent.getParcelableExtra<PresetModel>(AppConstants.KEY_PRESET_MODEL) as PresetModel
             if (presetModel?.typePresetModel == TypePresetModel.CUSTOM) {
-                com.fozechmoblive.fluidwallpaper.livefluid.ui.component.wallpaper.fluids.SettingsStorage.loadConfigPresetCustom(presetModel?.pathFluidCustom, config)
+                SettingsStorage.loadConfigPresetCustom(presetModel?.pathFluidCustom, config)
             } else
-                com.fozechmoblive.fluidwallpaper.livefluid.ui.component.wallpaper.fluids.SettingsStorage.loadConfigFromInternalPreset(
+                SettingsStorage.loadConfigFromInternalPreset(
                     presetModel?.name,
                     assets,
                     config
@@ -474,7 +488,7 @@ class WallpaperActivity : BaseActivity<ActivityWallpaperBinding>() {
     private fun setLiveWallpaper() {
         try {
             val componentName = ComponentName(
-                packageName, com.fozechmoblive.fluidwallpaper.livefluid.services.WallpaperService::class.java.name
+                packageName, WallpaperService::class.java.name
             )
             val intent = Intent("android.service.wallpaper.CHANGE_LIVE_WALLPAPER")
             intent.putExtra(
